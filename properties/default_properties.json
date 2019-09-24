@@ -1,0 +1,29 @@
+{
+  "equipment": {
+    "TRUCK": "THD1",
+    "AUTON_TRUCK": "THD2",
+    "GRADER": "EDM",
+    "SCRAPER": "EXT"
+  },
+  "min_dump_dist": 1000,
+  "max_dump_dist": 8000,
+  "min_travel_duration": 200,
+  "max_travel_duration": 3600,
+  "num_trips": 10,
+  "Q1": {
+    "slope": -1,
+    "intersept": -2
+  },
+  "Q2": {
+    "slope": -1,
+    "intersept": -2
+  },
+  "Q3": {
+    "slope": -1,
+    "intersept": -2
+  },
+  "Q4": {
+    "slope": -1,
+    "intersept": -2
+  }
+}

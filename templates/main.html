@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='foopicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='linearGraphDisplay.css') }}">
+
+
+</head>
+<body>
+    <div class="mainDiv">
+        <h2>Application Title</h2>
+        <!-- Tab links -->
+        <div class="tab">
+            <button id="defaultValuesBtn" class="tablinks" onclick="openTab(this, 'tab1')">Default Values</button>
+            <button id="uploadCSVBtn" class="tablinks" onclick="openTab(this, 'tab2')">CSV File Upload</button>
+            <button id="graphsBtn" class="tablinks" onclick="openTab(this, 'tab3')" disabled>Graphs</button>
+            <button id="dataBtn" class="tablinks" onclick="openTab(this, 'tab4')">Data</button>
+            <button id="formulasBtn" class="tablinks" onclick="openTab(this, 'tab5')">Formulas</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="tab1" class="tabcontent">
+            <h3>Default Values</h3>
+            <table>
+                <tr>
+                    <td>TRUCK</td>
+                    <td>
+                        <input type="text" id="truckCodeP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>AUTON TRUCK</td>
+                    <td>
+                        <input type="text" id="autoTruckCodeP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>GRADER</td>
+                    <td>
+                        <input type="text" id="graderCodeP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>SCRAPER</td>
+                    <td>
+                        <input type="text" id="scraperCodeP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Min Dump Dist(Meters)</td>
+                    <td>
+                        <input type="text" id="minDumpDistP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Max Dump Dist(Meters)</td>
+                    <td>
+                        <input type="text" id="maxDumpDistP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Min Full Travel Duration(Sec)</td>
+                    <td>
+                        <input type="text" id="minFullTravelDurationP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Max Full Travel Duration(Sec)</td>
+                    <td>
+                        <input type="text" id="maxFullTravelDurationP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Min Number of Trips</td>
+                    <td>
+                        <input type="text" id="minTripsP">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="tab2" class="tabcontent">
+            <h3>CSV File Upload</h3>
+            <div id="msgDivFileUpload" class="msgDivFileUpload"></div>
+            <p>
+                <label for="filechooser">Choose CSV data file:</label>
+                <input type="file" id="filechooser" name="filechooser" accept="text/csv">
+                <input type="button" id="uploadCSV" name="uploadCSV"
+                       value="Upload CSV File" onclick="uploadCSVAction();" disabled>
+            </p>
+        </div>
+
+        <div id="tab3" class="tabcontent" style="display: none">
+            <h3>Graphs</h3>
+            <form action="{{ url_for('make_graphs') }}" class="form"  id="mainForm" method="post">
+
+                <div id="dateDiv" class="dateDiv">
+                    <h3>Choose Start and End Date</h3>
+                    <div class="container">
+                        <div>
+                            <label for="startDateInput">Start Date</label>
+                            <input type="text" name="startDateInput" id="startDateInput" value="{{ session['min_date'] }}" size="12">
+                            <br><br>
+                            <label for="endDateInput">End Date</label>
+                            <input type="text" name="endDateInput" id="endDateInput" value="{{ session['max_date'] }}" size="12">
+                        </div>
+                    </div>
+                </div>
+                <div id="graphDataDiv" class="dataDiv">
+                    <table class="dataTable">
+                        <tr class="dataTabletr">
+                            <td colspan="2" >
+                                <label for="vehicleType">Select Vehicle Type</label>
+                                <select name="vehicleType" id="vehicleType" name="vehicleType" size="1">
+                                    {% for vehicle, code in init_dict.equipment.items() %}
+                                        <option value="{{ code }}">{{ vehicle }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr class="dataTabletr">
+                            <td class="dataTabletr">
+                                <label for="minDumpDist">Min Dump Dist (M)</label>
+                                <input type="text" id="minDumpDist" name="minDumpDist"
+                                       value="{{ init_dict.min_dump_dist }}" size="5">
+                            </td>
+                            <td class="dataTabletr">
+                                <label for="maxDumpDist">Max Dump Dist (M)</label>
+                                <input type="text" id="maxDumpDist" name="maxDumpDist"
+                                       value="{{ init_dict.max_dump_dist }}" size="5">
+                            </td>
+                        </tr>
+                        <tr class="dataTabletr">
+                            <td class="dataTabletr">
+                                <label for="minTravDur">Min Travel Dur (Sec)</label>
+                                <input type="text" id="minTravDur" name="minTravDur"
+                                       value="{{ init_dict.min_travel_duration }}" size="5">
+                            </td>
+                            <td class="dataTabletr">
+                                <label for="maxTravDur">Max Travel Dur (Sec)</label>
+                                <input type="text" id="maxTravDur" name="maxTravDur"
+                                       value="{{ init_dict.max_travel_duration }}" size="5">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="dataTabletr">
+                                <label for="minTrips">Min Num Trips</label>
+                                <input type="text" id="minTrips" name="minTrips"
+                                       value="{{ init_dict.num_trips }}" size="5">
+                            </td>
+                        </tr>
+                        <tr class="dataTabletr">
+                            <td colspan="2" class="dataTabletr">
+                                <!--<button type="submit" id="submitDataBtn" name="submitDataBtn">Submit Data</button>-->
+                                <input type="button" value="Submit Data" onclick="processGraphData();"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <div id="graphContainer" class="graphContainer"></div>
+        </div>
+        <div id="tab4" class="tabcontent">
+            <h3>Formulas</h3>
+            <p>Tab  Content</p>
+        </div>
+    </div>
+    <script src="static/tabs.js" charset="utf-8"></script>
+    <script src="static/filechooser.js" charset="utf-8"></script>
+    <script src="static/foopicker.js"></script>
+    <script src="static/graphdatasubmit.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+        var datepicker1 = new FooPicker({
+            id:  'startDateInput',
+            dateFormat: 'yyyy-MM-dd'
+        });
+        var datepicker2 = new FooPicker({
+            id: 'endDateInput',
+            dateFormat: 'yyyy-MM-dd'
+        });
+    </script>
+
+</body>
+</html>

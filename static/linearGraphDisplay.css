@@ -1,0 +1,34 @@
+/*#graphContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.box {
+  width: 50%;
+
+}
+
+@media(max-width: 300px) {
+  .box{
+      width: 100%;
+  }
+}*/
+
+.box {
+    position: relative;
+    flex: 0 48%;
+
+}
+
+.graphContainer {
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-end;
+
+}
+
+/*.graphContainer>div {
+  flex: 0 50%;
+  border: black solid;
+  box-sizing:border-box
+}*/
