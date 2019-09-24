@@ -125,3 +125,28 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+.idea/.gitignore
+.idea/.name
+.idea/KearlCurves.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+app.py
+docs/
+external_data/
+managers/data_manager.py
+managers/graph_manager.py
+managers/property_manager.py
+models/
+properties/
+static/filechooser.js
+static/foopicker.css
+static/foopicker.js
+static/graphdatasubmit.js
+static/graphimages/
+static/linearGraphDisplay.css
+static/main.css
+static/tabs.js
+templates/
+testdata/
