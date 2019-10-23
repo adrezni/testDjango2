@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+from models.linear_graph_generator import LinearGraphGenerator
+
+
 class GraphManager():
     @staticmethod
     def render_graphs_HTML(form_dict, data_frame):
@@ -11,13 +15,13 @@ class GraphManager():
         GraphManager.create_linear_Q_graphs(form_dict, data_frame)
         html_str = ""
         html_str += "<div id='Q1' class='box'>" + "<img src='/static/graphimages/linearQ1.png' " \
-                                                  "style='border: solid black;'/>" + "</div>"
+                                                  "class='linearImgSize'/>" + "</div>"
         html_str += "<div id='Q2' class='box'>" + "<img src='/static/graphimages/linearQ2.png' " \
-                                                  "style='border: solid black;'/>" + "</div>"
+                                                  "class='linearImgSize'/>" + "</div>"
         html_str += "<div id='Q3' class='box'>" + "<img src='/static/graphimages/linearQ3.png' " \
-                                                  "style='border: solid black;'/>" + "</div>"
+                                                  "class='linearImgSize'/>" + "</div>"
         html_str += "<div id='Q4' class='box'>" + "<img src='/static/graphimages/linearQ4.png' " \
-                                                  "style='border: solid black;'/>" + "</div>"
+                                                  "class='linearImgSize'/>" + "</div>"
         return html_str
 
     @staticmethod
@@ -32,9 +36,10 @@ class GraphManager():
         :param data_frame: The data frame read from the csv file.
         :return: Nothing to return since this method stores the graph images in the specified directory.
         """
+        plot = LinearGraphGenerator.generate_Q_graphs(form_dict, data_frame)
 
-        # Example of how to unpack the form_dict:
-        for keys, values in form_dict.items():
-            print (keys, values)
+        for counter in range(1,5):
+            plot.figure(counter)
+            plot.savefig("static/graphimages/linearQ" + str(counter) + ".png")
 
         return
