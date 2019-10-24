@@ -14,9 +14,8 @@ class LinearGraphGenerator:
         Generate 4 graph images from input parameters form_dict and
         data frame data_frame.  Return as 4 base64 encoded strings
         """
-        for keys, values in form_dict.items():
+        for keys, values in form_dict.items():  #this code just shows how to retrieve the form data
             print (keys, values)
-
         # Create some dummy data for plots
         qx = [1,2,3,4,5,6,7,8,9,10,11,12]
         q1y = [0.5,0.4,0.6,0.4,0.2,0.1,0.6,0.7,0.8,0.8,0.7,0.5]
