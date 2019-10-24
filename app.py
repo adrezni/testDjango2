@@ -1,9 +1,9 @@
-from flask import Flask, render_template, url_for, redirect, session, request
+from flask import Flask, render_template, session, request
 
 from managers.data_manager import DataManager
 from managers.graph_manager import GraphManager
 from managers.property_manager import PropertiesManager
-import json
+
 app = Flask(__name__)
 
 
@@ -26,11 +26,10 @@ def upload_and_read_csv():
 def make_graphs():
     # This is callback function from an asynchronous request.
     form_dict = request.form.to_dict() # contains all form data in dictionary form to make graphs
-    # Call on model to create 4 graphs: linearQ1.png, linearQ2.png, linearQ3.png, linearQ4.png and store
-    # in /static/graphimages project folder
 
     # Note:  DataFrame is cached in DataManager.static_data_frame, which is a class attribute.
     data_frame = DataManager.static_data_frame
+    # Get html with imbedded graph images
     returnedHTML = GraphManager.render_graphs_HTML(form_dict, data_frame)
     return returnedHTML
 
