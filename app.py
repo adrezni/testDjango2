@@ -9,8 +9,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    json_data = PropertiesManager.read_properties()
-    return render_template('main.html', init_dict = json_data)
+    json_dict = PropertiesManager.read_properties()
+    return render_template('main.html', init_dict = json_dict)
+
+
+@app.route('/save_properties', methods=['GET', 'POST'])
+def save_properties():
+    PropertiesManager.write_properties()
+    json_dict = PropertiesManager.read_properties()
+    return render_template('main.html', init_dict=json_dict)
 
 
 @app.route('/uploadCSV', methods=['POST'])
