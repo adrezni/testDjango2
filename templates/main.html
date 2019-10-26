@@ -24,62 +24,57 @@
         <!-- Tab content -->
         <div id="tab1" class="tabcontent">
             <h3>Default Values</h3>
-            <table>
-                <tr>
-                    <td>TRUCK</td>
-                    <td>
-                        <input type="text" id="truckCodeP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>AUTON TRUCK</td>
-                    <td>
-                        <input type="text" id="autoTruckCodeP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>GRADER</td>
-                    <td>
-                        <input type="text" id="graderCodeP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>SCRAPER</td>
-                    <td>
-                        <input type="text" id="scraperCodeP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Min Dump Dist(Meters)</td>
-                    <td>
-                        <input type="text" id="minDumpDistP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Max Dump Dist(Meters)</td>
-                    <td>
-                        <input type="text" id="maxDumpDistP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Min Full Travel Duration(Sec)</td>
-                    <td>
-                        <input type="text" id="minFullTravelDurationP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Max Full Travel Duration(Sec)</td>
-                    <td>
-                        <input type="text" id="maxFullTravelDurationP">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Min Number of Trips</td>
-                    <td>
-                        <input type="text" id="minTripsP">
-                    </td>
-                </tr>
-            </table>
+            <form action="{{ url_for('save_properties') }}" class="form" id="propForm" method="post">
+                <table>
+                    <tr>
+                        <td>Min Dump Dist(Meters)</td>
+                        <td>
+                            <input type="text" id="minDumpDistP" name="minDumpDistP"
+                            value="{{ init_dict.min_dump_dist }}" size="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Max Dump Dist(Meters)</td>
+                        <td>
+                            <input type="text" id="maxDumpDistP"
+                            value="{{ init_dict.max_dump_dist }}" size="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Min Full Travel Duration(Sec)</td>
+                        <td>
+                            <input type="text" id="minFullTravelDurationP"
+                            value="{{ init_dict.min_travel_duration }}" size="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Max Full Travel Duration(Sec)</td>
+                        <td>
+                            <input type="text" id="maxFullTravelDurationP"
+                            value="{{ init_dict.max_travel_duration }}" size="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Min Number of Trips</td>
+                        <td>
+                            <input type="text" id="minTripsP"
+                            value="{{ init_dict.num_trips }}" size="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date Col Name:</td>
+                        <td>
+                            <input type="text" id="dateColNameP"
+                                   value="{{ init_dict.date_col_name}}" size=""15>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Submit Changes">
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
 
         <div id="tab2" class="tabcontent">
