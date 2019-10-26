@@ -25,5 +25,6 @@
   "Q4": {
     "slope": -1,
     "intersept": -2
-  }
+  },
+  "date_col_name": "Date"
 }
