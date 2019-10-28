@@ -49,11 +49,11 @@ class LinearGraphGenerator:
         return encoded
 
     @staticmethod
-    def generate_Q_graphNew(qx,qy,qx1,qy1,quarter_no):
+    def generate_Q_graphNew(qx1,qy1,qx2,qy2,quarter_no):
         fig = plt.figure(quarter_no)
         ax1 = fig.add_subplot(111)
-        ax1.scatter(qx, qy, c='b')
-        ax1.scatter(qx1, qy1, c='g')
+        ax1.scatter(qx1, qy1, c='b')
+        ax1.scatter(qx2, qy2, c='g')
         plt.title('Quarter' + str(quarter_no))
         buffer = BytesIO()
         plt.savefig(buffer, format="png")
