@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 from flask import request, session
+from managers.property_manager import PropertiesManager
 
 
 class DataManager:
@@ -30,7 +31,9 @@ class DataManager:
 
     @staticmethod
     def get_max_min_dates():
-        return DataManager.static_data_frame['Date'].min(), DataManager.static_data_frame['Date'].max()
+        json_dict = PropertiesManager.read_properties()
+        date_col_name = json_dict['date_col_name']
+        return DataManager.static_data_frame[date_col_name].min(), DataManager.static_data_frame[date_col_name].max()
 
     @staticmethod
     def create_dataframe():
